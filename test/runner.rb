@@ -4,6 +4,7 @@
 require 'pathname'
 load Pathname.new(File.join(File.dirname(__FILE__), 
                             'bioruby_test_helper.rb')).cleanpath.to_s
+#load '/Users/Chase/Desktop/bioruby/test/bioruby_test_helper.rb'                            
 
 # libraries needed for the tests
 require 'test/unit'
