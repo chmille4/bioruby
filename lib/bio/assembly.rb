@@ -3,19 +3,12 @@ require 'bio/sequence'
 require 'bio/assembly/contig'
 require 'bio/assembly/read'
 
-class Array
-  def extract_options_from_args!(args) #:nodoc:
-    args.last.is_a?(Hash) ? args.pop : {}
-  end
-end
-
 module Bio
 
   class Assembly
     attr_accessor :contigs
   
     def initialize(path)
-      #options = args.extract_options_from_args!(args)
       @file = File.new(path, 'r') 
       @contigs = Array.new
       parse_as
