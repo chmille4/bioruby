@@ -16,15 +16,23 @@ module Bio
         @reads[name]
       end
       
-      def find_reads_in_range(from, to)
+      def find_reads_in_range(clear_range_from, clear_range_to)
         reads_in_range = Array.new
         each_read do |read|
-          if read.orientation == '+'
-            reads_in_range.push read if read.from > from or read.to < to
-          else
-            reads_in_range.push read if read.to > from or read.from < to
+          
+          # Read starts in region
+          if read.from > clear_range_from and read.from < clear_range_to
+             reads_in_range.push read
+          # Read ends in region
+          elsif read.to < clear_range_to and read.to > clear_range_from
+             reads_in_range.push read
+          # Read encompasses region
+          elsif read.from < clear_range_from and read.to > clear_range_to
+             reads_in_range.push read
           end
+          
         end
+        reads_in_range;
       end
       
       def add_read(read)

@@ -19,7 +19,7 @@ require 'bio/assembly'
 require 'bio/assembly/contig'
 
 module Bio
-  class TestAssemblyACE < Test::Unit::TestCase
+  class TestContigACE < Test::Unit::TestCase
 
     def setup
       test_data_path = Pathname.new(File.join(BioRubyTestDataPath, 'ace')).cleanpath.to_s
@@ -31,8 +31,19 @@ module Bio
       @obj.each_contig { |c| @contig = c if c.name.to_i == 5 }
     end
     
+    def test_1
+       assert_equal(1,1)
+    end
+    
     def test_find_reads_in_range
-      
+      known_reads = [ '235283518', '235288260', '235293813', '235288255', '235283548', '235307163' ]
+      reads_in_range = @contig.find_reads_in_range(295, 424)
+      known_reads.each do |read_name|
+        read = Bio::Assembly::Read.new()
+        read.name = read_name
+        reads_in_range.delete(read)
+      end
+      assert_equal(0, reads_in_range.size)
     end    
     
   end

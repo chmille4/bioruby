@@ -11,6 +11,10 @@ module Bio
        @seq = Bio::Sequence::NA.new(str)
       end
       
+      def ==(other_read)
+         name == other_read.name
+      end
+      
       def num_bases
         seq.length
       end
