@@ -21,13 +21,13 @@ module Bio
         each_read do |read|
           
           # Read starts in region
-          if read.from > clear_range_from and read.from < clear_range_to
+          if read.from+read.clear_range_from > clear_range_from and read.from+read.clear_range_from < clear_range_to
              reads_in_range.push read
           # Read ends in region
-          elsif read.to < clear_range_to and read.to > clear_range_from
+          elsif read.to+read.clear_range_to < clear_range_to and read.to+read.clear_range_to > clear_range_from
              reads_in_range.push read
           # Read encompasses region
-          elsif read.from < clear_range_from and read.to > clear_range_to
+          elsif read.from+read.clear_range_from < clear_range_from and read.to+read.clear_range_to > clear_range_to
              reads_in_range.push read
           end
           

@@ -36,8 +36,9 @@ module Bio
     end
     
     def test_find_reads_in_range
-      known_reads = [ '235283518', '235288260', '235293813', '235288255', '235283548', '235307163' ]
+      known_reads = [ '235283518', '235288260', '235293813', '235288255', '235283548' ]
       reads_in_range = @contig.find_reads_in_range(295, 424)
+      assert_equal( 5, known_reads.size )
       known_reads.each do |read_name|
         read = Bio::Assembly::Read.new()
         read.name = read_name
